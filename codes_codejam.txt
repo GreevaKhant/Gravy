@@ -1,0 +1,135 @@
+1>
+import numpy as np
+
+t = int(input())  # no of test cases
+for i in range(t):
+    count_row = 0
+    count_col = 0
+    l = []
+    size = int(input())  # size of each matrix
+    for j in range(size):
+        row = list(map(int, input().split()))
+        extra = set(row)
+        if len(row) != len(extra):
+            count_row += 1
+        l.append(row)
+    arr = np.array(l)
+    trace = np.trace(arr)
+    for j in range(size):
+        col = arr[ : , j]
+        extra = set(tuple(col))
+        if len(col) != len(extra):
+            count_col += 1
+    print("Case #{}: {} {} {}".format(i + 1, trace, count_row, count_col))
+
+
+
+
+
+2>
+t = int(input())
+
+for r in range(t):
+    s = list(input())
+    temp = s
+
+    res = ""
+    arr = []
+    avail = 0
+    for i in temp:
+        x = int(i)
+        while avail > x:
+            arr.append(")")
+            avail -= 1
+        if avail == 0:
+            while x:
+                arr.append("(")
+                x -= 1
+                avail += 1
+        if avail < x:
+            while x > avail:
+                arr.append("(")
+                avail += 1
+        arr.append(i)
+    while(avail):
+        arr.append(")")
+        avail -= 1
+    print("Case #" + str(r + 1) + ":", ''.join(arr))
+
+
+
+
+3>
+t=int(input())
+def key0(item):
+    return item[0]
+def key2(item):
+    return item[2]
+
+li1=[]
+li2=[]
+for i in range(t):
+    n=int(input())
+    li1.clear()
+    for y in range(n):
+        li2=[]
+        li2=[int(a) for a in input().split(" ")]
+        li2.append(y)
+        li1.append(li2)
+    li1.sort(key=key0)
+    c=-1
+    j=-1
+    f=True
+    for a in li1:
+        t1=a[0]
+        t2=a[1]
+        if c==-1:
+            c=t2
+            a.append('C')
+        elif t1>=c:
+            c=t2
+            a.append('C')
+        elif t1<c and t1>=j:
+            j=t2
+            a.append('J')
+        elif t1<c and t1<j:
+            f=False
+            break
+    if f==False:
+        str1="IMPOSSIBLE"
+    else:
+        str1=""
+        li1.sort(key=key2)
+        str1=str1.join([a[3] for a in li1])
+    print("case #{}: {}".format(i+1,str1))
+
+
+4>
+#include<bits/stdc++.h>
+using namespace std;
+signed main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t,b;
+    cin>>t>>b;
+    while(t--)
+    {
+        string s;
+        for(int i=0;i<10;i++)
+        {
+            char c;
+            cout<<(i+1)<<"\n";
+            cout.flush();
+            cin>>c;
+            s+=c;
+        }
+        cout<<s<<"\n";
+        cout.flush();
+        char b1;
+        cin>>b1;
+        if(b1=='N'||b1=='n')
+            break;
+    }
+    return 0;
+}
